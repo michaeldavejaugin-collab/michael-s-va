@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Briefcase, Users, Globe2, Star, CheckCircle2 } from 'lucide-react'
 import { CtaSection } from '@/components/sections/CtaSection'
@@ -82,15 +83,20 @@ export function AboutPageClient() {
               transition={{ duration: 0.7 }}
               className="sticky top-28"
             >
-              <div className="aspect-[3/4] bg-navy-900 relative overflow-hidden">
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="font-serif text-8xl font-medium text-white/10">MDJ</div>
-                </div>
-                <div className="absolute top-0 left-0 w-20 h-1 bg-gold-400" />
-                <div className="absolute top-0 left-0 w-1 h-20 bg-gold-400" />
-                <div className="absolute bottom-0 right-0 w-20 h-1 bg-gold-400" />
-                <div className="absolute bottom-0 right-0 w-1 h-20 bg-gold-400" />
-              </div>
+<div className="aspect-[3/4] relative overflow-hidden">
+  <Image
+    src="/profile.jpg"
+    alt="Michael Dave Jaugin"
+    fill
+    className="object-cover object-top"
+    priority
+  />
+
+  <div className="absolute top-0 left-0 w-20 h-1 bg-gold-400" />
+  <div className="absolute top-0 left-0 w-1 h-20 bg-gold-400" />
+  <div className="absolute bottom-0 right-0 w-20 h-1 bg-gold-400" />
+  <div className="absolute bottom-0 right-0 w-1 h-20 bg-gold-400" />
+</div>
               {/* Stats */}
               <div className="grid grid-cols-2 gap-px bg-gray-100 mt-px">
                 {[

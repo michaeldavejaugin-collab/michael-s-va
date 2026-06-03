@@ -75,28 +75,27 @@ export function AboutPageClient() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Photo placeholder */}
+            {/* Photo — sticky only on large screens */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="sticky top-28"
+              className="lg:sticky lg:top-28"
             >
-<div className="aspect-[3/4] relative overflow-hidden">
-  <Image
-    src="/profile.png"
-    alt="Michael Dave Jaugin"
-    fill
-    className="object-cover object-top"
-    priority
-  />
-
-  <div className="absolute top-0 left-0 w-20 h-1 bg-gold-400" />
-  <div className="absolute top-0 left-0 w-1 h-20 bg-gold-400" />
-  <div className="absolute bottom-0 right-0 w-20 h-1 bg-gold-400" />
-  <div className="absolute bottom-0 right-0 w-1 h-20 bg-gold-400" />
-</div>
+              <div className="aspect-[3/4] relative overflow-hidden">
+                <Image
+                  src="/profile.png"
+                  alt="Michael Dave Jaugin"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                <div className="absolute top-0 left-0 w-20 h-1 bg-gold-400" />
+                <div className="absolute top-0 left-0 w-1 h-20 bg-gold-400" />
+                <div className="absolute bottom-0 right-0 w-20 h-1 bg-gold-400" />
+                <div className="absolute bottom-0 right-0 w-1 h-20 bg-gold-400" />
+              </div>
               {/* Stats */}
               <div className="grid grid-cols-2 gap-px bg-gray-100 mt-px">
                 {[

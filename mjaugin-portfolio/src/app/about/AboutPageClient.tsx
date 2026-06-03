@@ -85,7 +85,7 @@ export function AboutPageClient() {
             >
 <div className="aspect-[3/4] relative overflow-hidden">
   <Image
-    src="/profile.jpg"
+    src="/profile.png"
     alt="Michael Dave Jaugin"
     fill
     className="object-cover object-top"

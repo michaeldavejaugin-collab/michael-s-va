@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronRight } from 'lucide-react'
 
@@ -17,7 +17,7 @@ interface Platform {
 }
 
 // ============================================================
-// ALL PLATFORMS DATA
+// PLATFORMS DATA
 // ============================================================
 const PLATFORMS: Platform[] = [
   {
@@ -272,7 +272,6 @@ function PlatformModal({ platform, onClose }: { platform: Platform; onClose: () 
         className="relative bg-navy-900 border border-white/10 w-full max-w-lg max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Gold top bar */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
         {/* Header */}
@@ -318,7 +317,6 @@ function PlatformModal({ platform, onClose }: { platform: Platform; onClose: () 
           </div>
         </div>
 
-        {/* Footer */}
         <div className="px-8 pb-8">
           <button
             onClick={onClose}
@@ -333,7 +331,7 @@ function PlatformModal({ platform, onClose }: { platform: Platform; onClose: () 
 }
 
 // ============================================================
-// SINGLE CARD
+// CARD — shared between carousel and grid
 // ============================================================
 function PlatformCard({ platform, onClick }: { platform: Platform; onClick: () => void }) {
   return (
@@ -341,17 +339,15 @@ function PlatformCard({ platform, onClick }: { platform: Platform; onClick: () =
       whileHover={{ scale: 1.07, y: -5 }}
       transition={{ duration: 0.2 }}
       onClick={onClick}
-      className="group relative flex-shrink-0 w-32 h-32 flex flex-col items-center justify-center gap-2.5 bg-navy-900 border border-white/10 hover:border-gold-400/60 hover:shadow-[0_0_28px_rgba(212,175,55,0.22)] transition-all duration-300 cursor-pointer mx-3"
+      className="group relative flex flex-col items-center justify-center gap-2.5 bg-navy-900 border border-white/10 hover:border-gold-400/60 hover:shadow-[0_0_28px_rgba(212,175,55,0.22)] transition-all duration-300 cursor-pointer p-5 w-32 h-32 flex-shrink-0"
       aria-label={`Learn more about ${platform.name}`}
     >
-      {/* Animated corner lines */}
       <div className="absolute top-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
       <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
-
       <span className="text-3xl transition-transform duration-300 group-hover:scale-110">
         {platform.icon}
       </span>
-      <span className="font-sans text-xs text-white/55 text-center px-2 leading-tight group-hover:text-white transition-colors duration-300">
+      <span className="font-sans text-xs text-white/55 text-center leading-tight group-hover:text-white transition-colors duration-300">
         {platform.name}
       </span>
       <span className="font-sans text-[9px] text-gold-400/0 group-hover:text-gold-400/70 transition-all duration-300 tracking-wide">
@@ -362,9 +358,9 @@ function PlatformCard({ platform, onClick }: { platform: Platform; onClick: () =
 }
 
 // ============================================================
-// MARQUEE ROW — pauses on hover of the entire strip
+// CAROUSEL ROW — used only in "Show All" mode
 // ============================================================
-function MarqueeRow({
+function CarouselRow({
   items,
   direction = 'left',
   onCardClick,
@@ -373,15 +369,13 @@ function MarqueeRow({
   direction?: 'left' | 'right'
   onCardClick: (p: Platform) => void
 }) {
-  // Triple the items so the loop never shows a gap
   const looped = [...items, ...items, ...items]
   const duration = items.length * 4
 
   return (
-    <div className="relative overflow-hidden mb-6 group/row">
-      {/* Fade left */}
+    <div className="relative overflow-hidden mb-6">
+      {/* Fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-r from-navy-900 to-transparent pointer-events-none" />
-      {/* Fade right */}
       <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 z-10 bg-gradient-to-l from-navy-900 to-transparent pointer-events-none" />
 
       <motion.div
@@ -389,16 +383,50 @@ function MarqueeRow({
         style={{ width: 'max-content' }}
         animate={{ x: direction === 'left' ? ['0%', '-33.333%'] : ['-33.333%', '0%'] }}
         transition={{ duration, repeat: Infinity, ease: 'linear' }}
-        // pause on hover
         whileHover={{ animationPlayState: 'paused' } as any}
       >
         {looped.map((platform, i) => (
-          <PlatformCard
-            key={`${platform.name}-${i}`}
-            platform={platform}
-            onClick={() => onCardClick(platform)}
-          />
+          <div key={`${platform.name}-${i}`} className="mx-3">
+            <PlatformCard platform={platform} onClick={() => onCardClick(platform)} />
+          </div>
         ))}
+      </motion.div>
+    </div>
+  )
+}
+
+// ============================================================
+// GRID VIEW — used when a specific category is selected
+// ============================================================
+function GridView({
+  items,
+  onCardClick,
+}: {
+  items: Platform[]
+  onCardClick: (p: Platform) => void
+}) {
+  return (
+    <div className="container-wide">
+      <motion.div
+        layout
+        className="flex flex-wrap justify-center gap-4"
+      >
+        <AnimatePresence mode="popLayout">
+          {items.map((platform, i) => (
+            <motion.div
+              key={platform.name}
+              initial={{ opacity: 0, scale: 0.85, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 16 }}
+              transition={{ duration: 0.25, delay: i * 0.04 }}
+            >
+              <PlatformCard
+                platform={platform}
+                onClick={() => onCardClick(platform)}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </motion.div>
     </div>
   )
@@ -411,18 +439,16 @@ export function PlatformsSection() {
   const [activeCategory, setActiveCategory] = useState('Show All')
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)
 
-  const filtered = activeCategory === 'Show All'
+  const isShowAll = activeCategory === 'Show All'
+
+  const filtered = isShowAll
     ? PLATFORMS
     : PLATFORMS.filter((p) => p.category === activeCategory)
 
-  // Split filtered list into two rows
-  const mid = Math.ceil(filtered.length / 2)
-  const row1 = filtered.slice(0, mid)
-  const row2 = filtered.slice(mid)
-
-  // If a row ends up empty (very few items), fall back to full list
-  const safeRow1 = row1.length > 0 ? row1 : filtered
-  const safeRow2 = row2.length > 0 ? row2 : [...filtered].reverse()
+  // For carousel mode: split into two rows
+  const mid = Math.ceil(PLATFORMS.length / 2)
+  const row1 = PLATFORMS.slice(0, mid)
+  const row2 = PLATFORMS.slice(mid)
 
   return (
     <>
@@ -497,30 +523,51 @@ export function PlatformsSection() {
             })}
           </motion.div>
 
-          {/* ── Carousels ── */}
+          {/* ── CAROUSEL (Show All) or GRID (category selected) ── */}
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35 }}
-            >
-              <MarqueeRow items={safeRow1} direction="left" onCardClick={setSelectedPlatform} />
-              <MarqueeRow items={safeRow2} direction="right" onCardClick={setSelectedPlatform} />
-            </motion.div>
+
+            {isShowAll ? (
+              // ── CAROUSEL MODE ──
+              <motion.div
+                key="carousel"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
+              >
+                <CarouselRow items={row1} direction="left" onCardClick={setSelectedPlatform} />
+                <CarouselRow items={row2} direction="right" onCardClick={setSelectedPlatform} />
+              </motion.div>
+            ) : (
+              // ── GRID MODE ──
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
+                className="pb-4"
+              >
+                <GridView items={filtered} onCardClick={setSelectedPlatform} />
+              </motion.div>
+            )}
+
           </AnimatePresence>
 
-          {/* ── Footer count ── */}
+          {/* ── Footer hint ── */}
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-center font-sans text-xs text-white/25 tracking-widest uppercase mt-4 container-wide"
+            className="text-center font-sans text-xs text-white/25 tracking-widest uppercase mt-8 container-wide"
           >
-            {filtered.length} platforms shown &nbsp;·&nbsp; {PLATFORMS.length} total across {CATEGORIES.length - 1} categories &nbsp;·&nbsp; click any card for details
+            {isShowAll
+              ? `${PLATFORMS.length} platforms across ${CATEGORIES.length - 1} categories · click any card for details`
+              : `${filtered.length} platforms in ${activeCategory} · click any card for details`
+            }
           </motion.p>
+
         </div>
       </section>
 

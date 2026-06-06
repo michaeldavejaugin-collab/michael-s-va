@@ -12,7 +12,6 @@ interface Platform {
   name: string
   icon?: string
   logo?: string
-  color?: string
   category: string
   description: string
   experience: string
@@ -25,7 +24,7 @@ interface Platform {
 const PLATFORMS: Platform[] = [
   {
     name: 'Google Workspace',
-    icon: '🔵',
+    logo: '/logos/googleworkspace.svg',
     category: 'Operations & Productivity',
     description: "Google's suite of cloud-based productivity and collaboration tools used daily for business operations.",
     experience: 'Used extensively across all client engagements for document management, communication, and scheduling.',
@@ -41,7 +40,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Monday.com',
-    icon: '🟠',
+    logo: '/logos/monday.svg',
     category: 'Operations & Productivity',
     description: 'A work operating system for project management, team workflows, and operational tracking.',
     experience: 'Managed client projects and team workflows using Monday.com boards and automations.',
@@ -49,7 +48,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Nifty',
-    icon: '🟣',
+    logo: '/logos/nifty.svg',
     category: 'Operations & Productivity',
     description: 'A modern project management tool that combines tasks, docs, and team collaboration.',
     experience: 'Used Nifty for managing multi-client operational workflows and milestone tracking.',
@@ -57,7 +56,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Slack',
-    icon: '💬',
+    logo: '/logos/slack.svg',
     category: 'Operations & Productivity',
     description: 'The leading business messaging platform for team communication and workflow integration.',
     experience: 'Primary communication tool across most client engagements for real-time updates and team coordination.',
@@ -65,7 +64,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'VS Code',
-    icon: '🔷',
+    logo: '/logos/vscode.svg',
     category: 'Operations & Productivity',
     description: 'Visual Studio Code — a powerful code editor used for website development and technical tasks.',
     experience: 'Used for website development, code editing, and technical support tasks across client projects.',
@@ -74,7 +73,6 @@ const PLATFORMS: Platform[] = [
   {
     name: 'Shopify',
     logo: '/logos/shopify.svg',
-    color: '#7AB55C',
     category: 'E-commerce Platforms',
     description: "The world's leading e-commerce platform powering millions of online stores globally.",
     experience: 'Extensive Shopify experience across multiple clients including full store management, optimization, and development.',
@@ -162,7 +160,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Microsoft Teams',
-    icon: '👥',
+    logo: '/logos/microsoft.svg',
     category: 'Communication & Collaboration',
     description: "Microsoft's unified communication and collaboration platform for enterprise teams.",
     experience: 'Managed communications and project coordination for clients operating in Microsoft environments.',

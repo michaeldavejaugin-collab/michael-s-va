@@ -32,7 +32,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Microsoft 365',
-    icon: '🟦',
+    logo: '/logos/microsoft.svg',
     category: 'Operations & Productivity',
     description: "Microsoft's enterprise productivity suite including Word, Excel, Outlook, and Teams.",
     experience: 'Proficient in the full Microsoft 365 ecosystem, particularly for clients operating in corporate environments.',

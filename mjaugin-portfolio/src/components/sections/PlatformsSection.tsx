@@ -9,7 +9,7 @@ import { X, ChevronRight } from 'lucide-react'
 // ============================================================
 interface Platform {
   name: string
-  icon: string
+  logo: string
   category: string
   description: string
   experience: string
@@ -70,7 +70,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Shopify',
-    icon: '🛍️',
+    logo: '/logos/shopify.svg',
     category: 'E-commerce Platforms',
     description: "The world's leading e-commerce platform powering millions of online stores globally.",
     experience: 'Extensive Shopify experience across multiple clients including full store management, optimization, and development.',

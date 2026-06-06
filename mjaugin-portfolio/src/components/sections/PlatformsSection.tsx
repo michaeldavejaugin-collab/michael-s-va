@@ -9,7 +9,8 @@ import { X, ChevronRight } from 'lucide-react'
 // ============================================================
 interface Platform {
   name: string
-  logo: string
+  icon?: string
+  logo?: string
   category: string
   description: string
   experience: string

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 
 // ============================================================
 // TYPES
@@ -278,9 +279,19 @@ function PlatformModal({ platform, onClose }: { platform: Platform; onClose: () 
         {/* Header */}
         <div className="flex items-start justify-between p-8 pb-6 border-b border-white/10">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 border border-gold-400/30 flex items-center justify-center text-3xl bg-white/5 flex-shrink-0">
-              {platform.icon}
-            </div>
+            <div className="w-14 h-14 border border-gold-400/30 flex items-center justify-center bg-white/5 flex-shrink-0">
+  {platform.logo ? (
+    <Image
+      src={platform.logo}
+      alt={platform.name}
+      width={40}
+      height={40}
+      className="object-contain"
+    />
+  ) : (
+    <span className="text-3xl">{platform.icon}</span>
+  )}
+</div>
             <div>
               <h3 className="font-serif text-2xl text-white font-medium">{platform.name}</h3>
               <p className="font-sans text-xs text-gold-400 tracking-widest uppercase mt-1">{platform.category}</p>
@@ -345,9 +356,19 @@ function PlatformCard({ platform, onClick }: { platform: Platform; onClick: () =
     >
       <div className="absolute top-0 left-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
       <div className="absolute bottom-0 right-0 w-0 h-0.5 bg-gold-400 transition-all duration-300 group-hover:w-full" />
-      <span className="text-3xl transition-transform duration-300 group-hover:scale-110">
-        {platform.icon}
-      </span>
+      <div className="h-12 w-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+  {platform.logo ? (
+    <Image
+      src={platform.logo}
+      alt={platform.name}
+      width={48}
+      height={48}
+      className="object-contain"
+    />
+  ) : (
+    <span className="text-3xl">{platform.icon}</span>
+  )}
+</div>
       <span className="font-sans text-xs text-white/55 text-center leading-tight group-hover:text-white transition-colors duration-300">
         {platform.name}
       </span>

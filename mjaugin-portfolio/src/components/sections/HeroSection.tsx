@@ -5,17 +5,17 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Star } from 'lucide-react'
 
 export function HeroSection() {
-  // Stagger variants for high-end luxury feel
+  // Premium staggered animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 }
+      transition: { staggerChildren: 0.12 }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -24,44 +24,70 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen w-full bg-[#0a1128] overflow-hidden flex items-center">
+    <section className="relative min-h-[90vh] md:min-h-screen w-full bg-[#0a1124] overflow-hidden flex items-center select-none">
       
-      {/* LAYER 1: Background Video - FULLY UNIFIED FOR DESKTOP & MOBILE */}
-      <div className="absolute inset-0 w-full h-full z-0">
+      {/* ──────────────────────────────────────────────────────────────
+          1. BACKGROUND IMPLEMENTATION (DESKTOP VIDEO VS. MOBILE IMAGE)
+          ────────────────────────────────────────────────────────────── */}
+      
+      {/* Desktop & Tablet Cinematic Video Background (>= 768px) */}
+      <div className="hidden md:block absolute inset-0 w-full h-full z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover opacity-30 lg:opacity-60 pointer-events-none"
+          className="w-full h-full object-cover object-right lg:object-center pointer-events-none opacity-85 transition-opacity duration-700"
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
 
-      {/* LAYER 2: Advanced Dark Masking (Adapts perfectly between mobile & desktop) */}
-      {/* Dynamic left-to-right fade on desktop, solid enveloping dark overlay on mobile */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b lg:bg-gradient-to-r from-[#0a1128] via-[#0a1128]/90 lg:via-[#0a1128]/80 to-[#0a1128]/40" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a1128] via-transparent to-[#0a1128]/50" />
+      {/* Mobile-Optimized Static High-Res Image Fallback (< 768px) */}
+      <div className="md:hidden absolute inset-0 w-full h-full z-0">
+        <img
+          src="/images/hero-mobile.jpg"
+          alt="Professional Work Environment"
+          className="w-full h-full object-cover opacity-30"
+        />
+      </div>
 
-      {/* LAYER 3: Luxury Radial Aura / Glow Behind Text */}
-      <div className="absolute left-[-10%] top-[20%] w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-[#d4af37]/5 blur-[100px] sm:blur-[150px] mix-blend-screen pointer-events-none z-10" />
+      {/* ──────────────────────────────────────────────────────────────
+          2. LUXURY LAYERING, GRADIENT MASKS & PREMIUM GLOWS
+          ────────────────────────────────────────────────────────────── */}
+      
+      {/* Layer 2: Left-to-Right Gradients matching your exact design file */}
+      {/* Solid deep navy on the left to perfectly secure text contrast; translucent on the right for video visibility */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a1124] via-[#0a1124]/90 md:via-[#0a1124]/75 via-40% to-[#0a1124]/20" />
+      
+      {/* Tablet-specific deep overlay adjustments (768px to 1023px) */}
+      <div className="hidden md:block lg:hidden absolute inset-0 z-10 bg-[#0a1124]/40" />
 
-      {/* Premium Tech Grid Overlay */}
+      {/* Top & Bottom Vignette fades */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0a1124]/40 via-transparent to-[#0a1124]" />
+
+      {/* Layer 3: Animated Premium Glow / Gold Radial Aura behind Text */}
+      <div className="absolute left-[-100px] top-1/4 w-[500px] md:w-[700px] h-[500px] md:h-[700px] rounded-full bg-[#e5ba53]/5 blur-[120px] md:blur-[180px] pointer-events-none z-10" />
+
+      {/* Fine-line Tech Grid Overlay from your template mockup */}
       <div
         className="absolute inset-0 opacity-[0.02] z-10 pointer-events-none"
         style={{
           backgroundImage:
             'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
+          backgroundSize: '60px 60px',
         }}
       />
 
-      {/* MAIN LAYOUT CONTAINER */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-20 lg:py-32">
-        <div className="w-full lg:w-[55%] flex flex-col justify-center">
+      {/* ──────────────────────────────────────────────────────────────
+          3. MAIN RESPONSIVE CONTENT AREA
+          ────────────────────────────────────────────────────────────── */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-28 pb-16 md:py-24">
+        
+        {/* Enforcing strict left-aligned typography bounding limits */}
+        <div className="w-full lg:w-[55%] xl:w-[52%] flex flex-col justify-center">
           
           <motion.div
             variants={containerVariants}
@@ -72,96 +98,93 @@ export function HeroSection() {
             {/* Social Proof Tag */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2.5 border border-[#d4af37]/30 bg-[#d4af37]/5 px-4 py-2 mb-6 sm:mb-8 rounded-sm"
+              className="inline-flex items-center gap-2.5 border border-[#e5ba53]/30 bg-[#e5ba53]/5 px-3.5 py-1.5 mb-6 md:mb-8"
             >
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     size={11}
-                    className="fill-[#d4af37] text-[#d4af37]"
+                    className="fill-[#e5ba53] text-[#e5ba53]"
                   />
                 ))}
               </div>
-              <span className="font-sans text-[11px] sm:text-xs text-white/70 tracking-wide">
+              <span className="font-sans text-[11px] sm:text-xs text-white/80 tracking-wide font-light">
                 Trusted by clients across the US, UK & Australia
               </span>
             </motion.div>
 
-            {/* Dynamic Headline */}
+            {/* Premium Serif Typography Headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium text-white leading-[1.1] sm:leading-[1.02] tracking-tight"
+              className="font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-white leading-[1.08] sm:leading-[1.02] tracking-tight"
             >
               Virtual Operations
               <br />
-              <span className="text-[#d4af37] italic font-normal">
+              <span className="text-[#e5ba53] italic font-serif">
                 &amp; E-commerce
               </span>
               <br />
               Excellence
             </motion.h1>
 
-            {/* Accent Divider */}
+            {/* Accent Separator Line */}
             <motion.div
               variants={itemVariants}
-              className="w-16 h-px bg-[#d4af37] my-6 sm:my-8"
+              className="w-16 h-px bg-[#e5ba53] my-6 md:my-8"
             />
 
-            {/* Rich Subheadline */}
+            {/* Subheadline Body copy */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-base sm:text-lg text-white/70 leading-relaxed max-w-xl mb-4"
+              className="font-sans text-base sm:text-lg text-white/70 leading-relaxed font-light max-w-xl mb-4"
             >
               I help ambitious e-commerce brands and global businesses streamline operations, grow revenue, and scale — without the overhead of a full-time hire.
             </motion.p>
 
-            {/* Owner Signature branding */}
-            <motion.div
-              variants={itemVariants}
-              className="mb-8 sm:mb-10"
-            >
-              <p className="font-sans text-[10px] sm:text-xs text-white/40 tracking-[0.15em] uppercase">
+            {/* Signature Label */}
+            <motion.div variants={itemVariants} className="mb-8 md:mb-10">
+              <p className="font-sans text-[10px] sm:text-xs text-white/40 tracking-[0.15em] uppercase font-light">
                 Michael Dave Jaugin — Virtual Operations Specialist
               </p>
             </motion.div>
 
-            {/* Call To Action Interactivity */}
+            {/* Premium Luxury Call to Actions */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center"
             >
               <Link 
                 href="/contact" 
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8952e] hover:brightness-110 text-black text-sm font-medium tracking-wide transition-all duration-300 rounded-sm shadow-xl shadow-[#d4af37]/5"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#e5ba53] hover:bg-[#d4a942] text-black text-xs sm:text-sm font-medium tracking-wider uppercase transition-colors duration-300"
               >
-                Work With Me <ArrowRight size={16} />
+                Work With Me <ArrowRight size={15} />
               </Link>
 
               <Link 
                 href="/services" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/20 hover:border-white/60 hover:bg-white/5 text-white text-sm font-medium tracking-wide transition-all duration-300 rounded-sm"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-transparent border border-white/20 hover:border-white/60 text-white text-xs sm:text-sm font-medium tracking-wider uppercase transition-colors duration-300"
               >
                 Explore Services
               </Link>
             </motion.div>
 
-            {/* Data Metrics & Proof Grid */}
+            {/* Metric Statistics Section */}
             <motion.div
               variants={itemVariants}
-              className="mt-16 sm:mt-20 pt-8 sm:pt-10 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8"
+              className="mt-16 md:mt-20 pt-8 md:pt-10 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8"
             >
               {[
                 { value: '4+', label: 'Years Experience' },
-                { value: '2+', label: 'Team Leadership' },
+                { value: '2+', label: 'Years Team Leadership' },
                 { value: '50+', label: 'Projects Delivered' },
                 { value: '100%', label: 'Client Satisfaction' },
               ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-[#d4af37]">
+                <div key={stat.label} className="border-l border-white/10 pl-4 first:border-0 first:pl-0 sm:first:border-l sm:first:pl-4 sm:odd:border-l sm:even:border-l lg:border-l lg:first:border-0 lg:first:pl-0">
+                  <div className="font-serif text-2xl sm:text-3xl md:text-4xl font-light text-[#e5ba53]">
                     {stat.value}
                   </div>
-                  <div className="font-sans text-[10px] sm:text-xs text-white/40 tracking-wide mt-1 uppercase">
+                  <div className="font-sans text-[9px] sm:text-[10px] text-white/40 tracking-wider mt-1 uppercase font-light leading-snug">
                     {stat.label}
                   </div>
                 </div>
@@ -169,10 +192,8 @@ export function HeroSection() {
             </motion.div>
 
           </motion.div>
-
         </div>
       </div>
-
     </section>
   )
 }

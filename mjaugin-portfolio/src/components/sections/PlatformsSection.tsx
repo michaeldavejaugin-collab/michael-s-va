@@ -80,7 +80,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Amazon Seller',
-    icon: '📦',
+    logo: '/logos/amazon.svg',
     category: 'E-commerce Platforms',
     description: "Amazon's seller platform for managing product listings, inventory, and fulfilment on the world's largest marketplace.",
     experience: 'Managed Amazon seller accounts including listings, inventory coordination, and performance monitoring.',
@@ -88,7 +88,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'WooCommerce',
-    icon: '🛒',
+    logo: '/logos/woocommerce.svg',
     category: 'E-commerce Platforms',
     description: 'The most popular WordPress e-commerce plugin powering online stores of all sizes.',
     experience: 'Built and managed WooCommerce stores including product management, order processing, and plugin configuration.',
@@ -96,7 +96,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'eBay',
-    icon: '🏪',
+    logo: '/logos/ebay.svg',
     category: 'E-commerce Platforms',
     description: "One of the world's largest online marketplaces for both new and used products.",
     experience: 'Managed eBay seller accounts with focus on listing optimization, customer service, and account health.',
@@ -104,7 +104,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Apollo',
-    icon: '🚀',
+    logo: '/logos/apollo.svg',
     category: 'Lead Generation & CRM',
     description: 'A powerful sales intelligence and engagement platform for prospecting and outreach.',
     experience: 'Used Apollo extensively for building targeted lead lists, contact enrichment, and outreach campaign management.',
@@ -112,7 +112,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'HubSpot',
-    icon: '🟧',
+    logo: '/logos/hubspot.svg',
     category: 'Lead Generation & CRM',
     description: 'An all-in-one CRM platform for marketing, sales, and customer service operations.',
     experience: 'Managed HubSpot CRM for multiple clients including contact management, pipeline tracking, and reporting.',
@@ -120,7 +120,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Zoho CRM',
-    icon: '🔴',
+    logo: '/logos/zoho.svg',
     category: 'Lead Generation & CRM',
     description: 'A comprehensive CRM solution for managing sales pipelines and customer relationships.',
     experience: 'Configured and managed Zoho CRM for sales pipeline management and customer data organization.',
@@ -128,7 +128,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Salesforce',
-    icon: '☁️',
+    logo: '/logos/salesforce.svg',
     category: 'Lead Generation & CRM',
     description: "The world's #1 CRM platform used by enterprises globally for sales and operations.",
     experience: 'Supported Salesforce operations including data management, report generation, and record maintenance.',
@@ -136,7 +136,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Lead Scraping',
-    icon: '🔍',
+    logo: '/logos/leadscraping.svg',
     category: 'Lead Generation & CRM',
     description: 'Custom lead scraping systems and tools for building targeted prospect databases.',
     experience: 'Built and managed custom lead generation systems for clients requiring targeted outreach lists.',
@@ -144,7 +144,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Zoom',
-    icon: '📹',
+    logo: '/logos/zoom.svg',
     category: 'Communication & Collaboration',
     description: 'The leading video conferencing platform for business meetings and client calls.',
     experience: 'Daily use for client meetings, team check-ins, and virtual collaboration across time zones.',
@@ -152,7 +152,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Google Meet',
-    icon: '🎥',
+    logo: '/logos/googlemeet.svg',
     category: 'Communication & Collaboration',
     description: "Google's video meeting solution integrated with Google Workspace for seamless collaboration.",
     experience: 'Used regularly for internal team meetings and client calls within Google Workspace environments.',
@@ -168,7 +168,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'WordPress',
-    icon: '🌐',
+    logo: '/logos/wordpress.svg',
     category: 'Marketing & Website Management',
     description: "The world's most popular CMS powering over 40% of all websites globally.",
     experience: 'Built, maintained, and optimized WordPress websites for multiple clients across various industries.',
@@ -176,7 +176,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Elementor',
-    icon: '⚡',
+    logo: '/logos/elementor.svg',
     category: 'Marketing & Website Management',
     description: 'The leading WordPress page builder for creating professional websites without code.',
     experience: 'Built landing pages and full websites using Elementor for clients requiring visual design control.',
@@ -184,7 +184,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Canva',
-    icon: '🎨',
+    logo: '/logos/canva.svg',
     category: 'Marketing & Website Management',
     description: 'A powerful graphic design platform for creating professional visual content.',
     experience: 'Created marketing materials, social media content, and brand assets for multiple clients.',
@@ -192,7 +192,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Mailchimp',
-    icon: '📧',
+    logo: '/logos/mailchimp.svg',
     category: 'Marketing & Website Management',
     description: 'A leading email marketing platform for creating, sending, and analyzing campaigns.',
     experience: 'Managed email marketing campaigns including list management, template creation, and performance tracking.',
@@ -200,7 +200,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Klaviyo',
-    icon: '📨',
+    logo: '/logos/klaviyo.svg',
     category: 'Marketing & Website Management',
     description: 'The preferred email & SMS marketing platform for e-commerce businesses.',
     experience: 'Set up and managed Klaviyo flows and campaigns for e-commerce clients to drive repeat purchases.',
@@ -208,7 +208,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'GoHighLevel',
-    icon: '📊',
+    logo: '/logos/gohighlevel.svg',
     category: 'Business Systems & Client Portals',
     description: 'An all-in-one marketing and CRM platform popular with agencies and service businesses.',
     experience: 'Managed GoHighLevel accounts for agency clients including pipeline management and automation setup.',
@@ -216,7 +216,7 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'SuiteDash',
-    icon: '🗂️',
+    logo: '/logos/suitedash.svg',
     category: 'Business Systems & Client Portals',
     description: 'A comprehensive client portal and business management platform for service businesses.',
     experience: 'Configured and managed SuiteDash client portals for service-based businesses.',

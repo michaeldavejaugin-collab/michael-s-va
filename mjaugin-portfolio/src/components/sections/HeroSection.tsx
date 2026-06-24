@@ -7,12 +7,59 @@ import { ArrowRight, Star } from 'lucide-react'
 export function HeroSection() {
   return (
     <section className="relative min-h-screen bg-navy-900 flex items-center overflow-hidden">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-hero-pattern" />
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-400/5 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-blue-600/10 blur-3xl" />
-      </div>
+      {/* Desktop Video */}
+<div className="hidden md:block absolute inset-0 overflow-hidden">
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    className="absolute inset-0 h-full w-full object-cover"
+  >
+    <source src="/videos/hero-video.mp4" type="video/mp4" />
+  </video>
+</div>
+
+{/* Mobile Image */}
+<div className="md:hidden absolute inset-0 overflow-hidden">
+  <img
+    src="/images/hero-mobile.jpg"
+    alt=""
+    className="w-full h-full object-cover"
+  />
+</div>
+
+{/* Global Dark Overlay */}
+<div className="absolute inset-0 bg-navy-950/75" />
+
+{/* Hero Text Protection */}
+<div
+  className="
+    absolute
+    inset-0
+    bg-gradient-to-r
+    from-navy-950
+    via-navy-950/90
+    via-40%
+    to-transparent
+  "
+/>
+
+{/* Premium Glow */}
+<div
+  className="
+    absolute
+    left-[-150px]
+    top-1/2
+    -translate-y-1/2
+    w-[700px]
+    h-[700px]
+    rounded-full
+    bg-gold-400/10
+    blur-[180px]
+  "
+/>
       {/* Grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -22,8 +69,8 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
-        <div className="max-w-4xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-3xl">
           {/* Social proof badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

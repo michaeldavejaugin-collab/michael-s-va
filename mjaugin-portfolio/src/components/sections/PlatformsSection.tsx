@@ -279,14 +279,14 @@ function PlatformModal({ platform, onClose }: { platform: Platform; onClose: () 
         {/* Header */}
         <div className="flex items-start justify-between p-8 pb-6 border-b border-white/10">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 border border-gold-400/30 flex items-center justify-center bg-white/5 flex-shrink-0">
+            <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center flex-shrink-0 shadow-lg">
   {platform.logo ? (
     <Image
       src={platform.logo}
       alt={platform.name}
       width={40}
       height={40}
-      className="object-contain brightness-0 invert"
+      className="object-contain"
     />
   ) : (
     <span className="text-3xl">{platform.icon}</span>
